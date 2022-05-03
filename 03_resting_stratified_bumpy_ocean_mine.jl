@@ -4,7 +4,7 @@ using Oceananigans.BoundaryConditions: fill_halo_regions!
 using Oceananigans.ImmersedBoundaries: ImmersedBoundaryGrid, GridFittedBottom, PartialCellBottom
 using Printf
 using Plots
-#using GLMakie
+
 
 arch = CPU()
 tracer_advection = CenteredSecondOrder()
@@ -48,6 +48,9 @@ xb, yb, zb = nodes((Center, Center, Center), grid)
 bplot = contourf(yb, zb, interior(b)[1, :, :]', title="tracer", xlabel="y", ylabel="z")
 savefig(bplot, "tracer.png")
 
+xv, yv, zv = nodes((Face, Center, Center), grid)
+vplot = contourf(yv, zv, interior(v)[1, :, :]', title="velocity_V", xlabel="y", ylabel="z")
+savefig(bplot, "Velocity_V.png")
 
 
 
