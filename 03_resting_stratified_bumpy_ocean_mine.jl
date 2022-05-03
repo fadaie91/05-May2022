@@ -50,7 +50,7 @@ savefig(bplot, "tracer.png")
 
 xv, yv, zv = nodes((Face, Center, Center), grid)
 vplot = contourf(yv, zv, interior(v)[1, :, :]', title="velocity_V", xlabel="y", ylabel="z")
-savefig(bplot, "Velocity_V.png")
+savefig(vplot, "Velocity_V.png")
 
 
 
