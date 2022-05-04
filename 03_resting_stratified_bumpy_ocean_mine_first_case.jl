@@ -37,7 +37,12 @@ N² = 1e-1
 bᵢ(x, y, z) = N² * z
 set!(model, b = bᵢ)
 
-simulation = Simulation(model; Δt=1e-3, stop_iteration=10)
+# Simulation                             
+stop_time = 1.0
+Δy = grid.Δyᵃᶜᵃ
+@show Δt = 1e-2 * Δy
+simulation = Simulation(model; Δt, stop_time)
+#simulation = Simulation(model; Δt=1e-3, stop_iteration=10)
 
 run!(simulation)
 
