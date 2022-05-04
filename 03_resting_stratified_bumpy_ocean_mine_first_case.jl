@@ -33,9 +33,9 @@ model = HydrostaticFreeSurfaceModel(; grid,
                                     tracers = :b,
                                     buoyancy = BuoyancyTracer())
 
-#N² = 1e+1
-#bᵢ(x, y, z) = N² * z
-bᵢ(x, y, z) = 1 + z
+N² = 1e+1
+bᵢ(x, y, z) = N² * z
+#bᵢ(x, y, z) = 1 + z
 set!(model, b = bᵢ)
 
 # Simulation                             
