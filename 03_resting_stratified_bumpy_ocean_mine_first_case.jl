@@ -25,20 +25,21 @@ seamount_field = Field{Center, Center, Nothing}(underlying_grid)
 set!(seamount_field, seamount)
 fill_halo_regions!(seamount_field)
 
-grid = ImmersedBoundaryGrid(underlying_grid, PartialCellBottom(seamount_field.data))
-#grid = ImmersedBoundaryGrid(underlying_grid, GridFittedBottom(seamount_field.data))
+#grid = ImmersedBoundaryGrid(underlying_grid, PartialCellBottom(seamount_field.data))
+grid = ImmersedBoundaryGrid(underlying_grid, GridFittedBottom(seamount_field.data))
 
 model = HydrostaticFreeSurfaceModel(; grid,
                                     tracer_advection,
                                     tracers = :b,
                                     buoyancy = BuoyancyTracer())
 
-N² = 1e-1
-bᵢ(x, y, z) = N² * z
+#N² = 1e+1
+#bᵢ(x, y, z) = N² * z
+bᵢ(x, y, z) = 1 + z
 set!(model, b = bᵢ)
 
 # Simulation                             
-stop_time = 1.0
+stop_time = 1
 Δy = grid.Δyᵃᶜᵃ
 @show Δt = 1e-2 * Δy
 simulation = Simulation(model; Δt, stop_time)
