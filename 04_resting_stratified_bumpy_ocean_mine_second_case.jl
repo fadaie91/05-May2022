@@ -38,7 +38,12 @@ model = HydrostaticFreeSurfaceModel(; grid,
 bᵢ(x, y, z) = 1 + z
 set!(model, b = bᵢ)
 
-simulation = Simulation(model; Δt=1e-3, stop_iteration=10)
+# Simulation                             
+stop_time = 1
+Δy = grid.Δyᵃᶜᵃ
+@show Δt = 1e-2 * Δy
+simulation = Simulation(model; Δt, stop_time)
+#simulation = Simulation(model; Δt=1e-3, stop_iteration=10)
 
 run!(simulation)
 
