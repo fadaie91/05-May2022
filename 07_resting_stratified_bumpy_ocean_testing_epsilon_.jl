@@ -33,7 +33,7 @@ seamount_field = Field{Center, Center, Nothing}(underlying_grid)
 set!(seamount_field, seamount)
 fill_halo_regions!(seamount_field)
 
-grid = ImmersedBoundaryGrid(underlying_grid, PartialCellBottom(seamount_field.data,minimum_fractional_Δz=1))
+grid = ImmersedBoundaryGrid(underlying_grid, PartialCellBottom(seamount_field.data,minimum_fractional_Δz=0.1))
 #grid = ImmersedBoundaryGrid(underlying_grid, GridFittedBottom(seamount_field.data))
 
 model = HydrostaticFreeSurfaceModel(; grid,
