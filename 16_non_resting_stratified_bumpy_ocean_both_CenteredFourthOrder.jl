@@ -65,7 +65,7 @@ for ib in immersed_boundaries
     vᵢ(x, y, z) = 0.1
     set!(model, b = bᵢ, v = vᵢ)
 
-    simulation = Simulation(model; Δt=1e-3, stop_iteration=5000)
+    simulation = Simulation(model; Δt=1e-4, stop_iteration=5000)
     simulation.callbacks[:p] = Callback(progress, IterationInterval(100))
 
 
