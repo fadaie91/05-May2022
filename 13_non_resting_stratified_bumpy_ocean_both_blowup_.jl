@@ -9,7 +9,7 @@ tracer_advection = CenteredSecondOrder()
 momentum_advection = CenteredSecondOrder()
 
 underlying_grid = RectilinearGrid(arch,
-                                  size=(64, 32), halo=(3, 3), 
+                                  size=(128, 64), halo=(3, 3), 
                                   y = (-1, 1),
                                   z = (-1, 0),
                                   topology=(Flat, Periodic, Bounded))
@@ -24,7 +24,7 @@ seamount_field = Field{Center, Center, Nothing}(underlying_grid)
 set!(seamount_field, seamount)
 fill_halo_regions!(seamount_field)
 
-minimum_fractional_Δz = 0.2
+minimum_fractional_Δz = 1
 immersed_boundaries = [
                        PartialCellBottom(seamount_field.data;
                                          minimum_fractional_Δz),
@@ -59,7 +59,7 @@ for ib in immersed_boundaries
     vᵢ(x, y, z) = 0.1
     set!(model, b = bᵢ, v = vᵢ)
 
-    simulation = Simulation(model; Δt=1e-3, stop_iteration=5000)
+    simulation = Simulation(model; Δt=1e-4, stop_iteration=5000)
     simulation.callbacks[:p] = Callback(progress, IterationInterval(100))
 
 
