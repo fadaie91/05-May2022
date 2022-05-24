@@ -66,7 +66,7 @@ for ib in immersed_boundaries
     model = HydrostaticFreeSurfaceModel(; grid,
                                         tracer_advection,
                                         momentum_advection,
-                                        coriolis = FPlane(f=0.1),
+                                        #coriolis = FPlane(f=0.1),
                                         tracers = :b,
                                         buoyancy = BuoyancyTracer())
 
