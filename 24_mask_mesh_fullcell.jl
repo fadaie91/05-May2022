@@ -3,6 +3,7 @@ using Oceananigans.BoundaryConditions: fill_halo_regions!
 using Oceananigans.ImmersedBoundaries: ImmersedBoundaryGrid, GridFittedBottom, PartialCellBottom
 using Printf
 using Plots
+using Oceananigans.ImmersedBoundaries: mask_immersed_field!
 
 arch = CPU()
 
