@@ -63,13 +63,7 @@ for ib in immersed_boundaries
 
     @show grid
 
-    model = HydrostaticFreeSurfaceModel(; grid,
-                                        tracer_advection,
-                                        momentum_advection,
-                                        #coriolis = FPlane(f=0.1),
-                                        tracers = :b,
-                                        buoyancy = BuoyancyTracer())
-
+    
 
 Ψ = Field{Center, Face, Face}(grid)
 
@@ -109,6 +103,14 @@ fill_halo_regions!(W, arch)
 ### which means that they won't evolve during the simulation
 ### and using the function below we prescribe the velocities
 velocities = PrescribedVelocityFields( v=V, w=W)
+  
+  model = HydrostaticFreeSurfaceModel(; grid,
+                                        tracer_advection,
+                                        momentum_advection,
+                                        #coriolis = FPlane(f=0.1),
+                                        tracers = :b,
+                                        buoyancy = BuoyancyTracer())
+
 N² = 1
 #bᵢ(x, y, z) = N² * z
 bᵢ(x, y, z) = N² + z
