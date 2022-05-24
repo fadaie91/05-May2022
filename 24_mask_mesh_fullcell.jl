@@ -17,6 +17,12 @@ function show_mask(grid)
     return x, y, z, c
 end
 
+underlying_grid = RectilinearGrid(arch,
+                                  size=(128, 64), halo=(3, 3), 
+                                  y = (-1, 1),
+                                  z = (-1, 0),
+                                  topology=(Flat, Periodic, Bounded))
+
 # A bump
 h₀ = 0.5 # bump height
 L = 0.25 # bump width
@@ -27,9 +33,6 @@ seamount_field = Field{Center, Center, Nothing}(underlying_grid)
 set!(seamount_field, seamount)
 fill_halo_regions!(seamount_field)
 
-grid = RectilinearGrid(size=(16, 8), y=(-1, 1), z=(-1, 0),
-                       topology=(Flat, Periodic, Bounded), halo=(3,3)
-                       )
 grid_with_seamount = ImmersedBoundaryGrid(underlying_grid, GridFittedBottom(seamount_field.data))
 #grid_with_seamount = ImmersedBoundaryGrid(grid, GridFittedBoundary(seamount))
 
