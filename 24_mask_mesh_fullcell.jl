@@ -9,7 +9,7 @@ arch = CPU()
 
 function show_mask(grid)
 
-    c = CenterField(CPU(), grid)
+    c = CenterField(grid)
     c .= 1
 
     mask_immersed_field!(c)
@@ -20,7 +20,7 @@ function show_mask(grid)
 end
 
 underlying_grid = RectilinearGrid(arch,
-                                  size=(128, 64), halo=(3, 3), 
+                                  size=(16 8), halo=(3, 3), 
                                   y = (-1, 1),
                                   z = (-1, 0),
                                   topology=(Flat, Periodic, Bounded))
