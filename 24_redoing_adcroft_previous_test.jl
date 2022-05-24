@@ -111,9 +111,13 @@ velocities = PrescribedVelocityFields( v=V, w=W)
                                         tracers = :b,
                                         buoyancy = BuoyancyTracer())
 
+bᵢ= Field{Center, Center, Center}(grid)   
 N² = 1
 #bᵢ(x, y, z) = N² * z
-bᵢ(x, y, z) = N² + z
+bᵢ(x, y, z) = N² + z                                   
+#set!(B, (x, y, z) -> (1.0 + z) ) 
+mask_immersed_field!(bᵢ)
+  
     set!(model, b = bᵢ, v = V)
 
     simulation = Simulation(model; Δt=1e-3, stop_time=1)
