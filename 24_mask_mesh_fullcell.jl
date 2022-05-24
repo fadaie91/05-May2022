@@ -4,6 +4,7 @@ using Oceananigans.ImmersedBoundaries: ImmersedBoundaryGrid, GridFittedBottom, P
 using Printf
 using Plots
 
+arch = CPU()
 
 function show_mask(grid)
 
