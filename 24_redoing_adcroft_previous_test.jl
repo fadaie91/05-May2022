@@ -109,6 +109,7 @@ velocities = PrescribedVelocityFields( v=V, w=W)
                                         momentum_advection,
                                         #coriolis = FPlane(f=0.1),
                                         tracers = :b,
+                                        velocities = velocities,
                                         buoyancy = BuoyancyTracer())
 
 B= Field{Center, Center, Center}(grid)   
