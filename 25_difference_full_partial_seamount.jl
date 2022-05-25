@@ -4,7 +4,6 @@ using Oceananigans.ImmersedBoundaries: ImmersedBoundaryGrid, GridFittedBottom, P
 using Printf
 using Plots
 using Oceananigans.ImmersedBoundaries: mask_immersed_field!
-using DataFrames
 
 arch = CPU()
 
