@@ -37,21 +37,21 @@ set!(seamount_field, seamount)
 fill_halo_regions!(seamount_field)
 grid_with_seamount_full = ImmersedBoundaryGrid(underlying_grid, GridFittedBottom(seamount_field.data))
 
-x, y, z, ccf = show_mask(grid_with_seamount_full)
+x, y, z, ccfull = show_mask(grid_with_seamount_full)
 
-interior(ccf)[1,:,:]'
+interior(ccfull)[1,:,:]'
 
-#plt = heatmap(y, z, interior(ccf)[1,:,:]', xlabel = "y", ylabel = "z", title = "Masked Region_Full_cell")
+#plt = heatmap(y, z, interior(ccfull)[1,:,:]', xlabel = "y", ylabel = "z", title = "Masked Region_Full_cell")
 #savefig(plt,"mask_fullcell.png")
 
 grid_with_seamount_partial = ImmersedBoundaryGrid(underlying_grid, PartialCellBottom(seamount_field.data,minimum_fractional_Δz=1))
 
-x, y, z, ccp = show_mask(grid_with_seamount_partial)
+x, y, z, ccpartial = show_mask(grid_with_seamount_partial)
 
-interior(ccp)[1,:,:]'
+interior(ccpartial)[1,:,:]'
 
 
-#plt = heatmap(y, z, interior(ccp)[1,:,:]', xlabel = "y", ylabel = "z", title = "Masked Region_Partial_cell")
+#plt = heatmap(y, z, interior(ccpartial)[1,:,:]', xlabel = "y", ylabel = "z", title = "Masked Region_Partial_cell")
 #savefig(plt,"mask_partialcell.png")
 
-interior(ccf)[1,:,:]'-interior(ccp)[1,:,:]'
+interior(ccfull)[1,:,:]'-interior(ccpartial)[1,:,:]'
