@@ -22,16 +22,16 @@ tracer_advection = WENO5()
 
 
 underlying_grid = RectilinearGrid(arch,
-                                  size=(128, 64), halo=(3, 3), 
-                                  y = (-1, 1),
+                                  size=(160, 40), halo=(3, 3), 
+                                  y = (-2, 2),
                                   z = (-1, 0),
                                   topology=(Flat, Periodic, Bounded))
 
 # A bump
 h₀ = 0.1 # bump height
-L = 0.5 # bump width
+L = 1 # bump width
 @inline h(y) = h₀ * exp(- y^2 / L^2)
-@inline seamount(x, y) = - 1 + h(y)
+@inline seamount(x, y) = - 2 + h(y)
 
 seamount_field = Field{Center, Center, Nothing}(underlying_grid)
 set!(seamount_field, seamount)
