@@ -20,14 +20,14 @@ function show_mask(grid)
 end
 
 underlying_grid = RectilinearGrid(arch,
-                                         size=(16, 8), halo=(3, 3),
-                                         y = (-1, 1),
+                                         size=(640, 80), halo=(3, 3),
+                                         y = (-4, 4),
                                          z = (-1, 0),
                                          topology=(Flat, Periodic, Bounded))
 
 # A bump
-h₀ = 0.5 # bump height
-L = 0.25 # bump width
+h₀ = 0.1 # bump height
+L = 1 # bump width
 
 @inline h(y) = h₀ * exp(- y^2 / L^2)
 @inline seamount(x, y) = - 1 + h(y)
